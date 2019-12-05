@@ -54,6 +54,8 @@ public class Main {
                             }
                         }
                     });
+
+                    printProductToCartMessage();
                     break;
                 case NECESSITY:
                     category = null;
@@ -85,6 +87,8 @@ public class Main {
                             }
                         }
                     });
+
+                    printProductToCartMessage();
                     break;
                 case CART:
                     break;
@@ -154,7 +158,7 @@ public class Main {
         System.out.println();
     }
 
-    private void printProductToCartMessage() {
+    private static void printProductToCartMessage() {
         System.out.println("상번호, 수량을 입력해서 장바구니에 추가하세요!");
         System.out.println("예) 1 4");
         System.out.println("다 골랐으면 0번을 눌러주세요.\n");
