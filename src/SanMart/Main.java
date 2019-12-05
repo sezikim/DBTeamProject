@@ -70,13 +70,13 @@ public class Main {
 
                         int itemCount = Integer.parseInt(tokenizer.nextToken());
 
-                        databaseProcess(InsertCartSimple, new ExecuteQuery() {
+                        databaseProcess(InsertCartSimple , new ExecuteQuery() {
                             @Override
                             public void processFromResultSet(ResultSet resultSet) {
 
                             }
                         });
-                        System.out.printf("%s, %d 개가 장바구니에 담겼습니다.\n", ITEM_NAMES[itemNumber - 1], itemCount);
+                        //System.out.printf("%s, %d 개가 장바구니에 담겼습니다.\n", ITEM_NAMES[itemNumber - 1], itemCount);
                     }
                     break;
                 case NECESSITY:
