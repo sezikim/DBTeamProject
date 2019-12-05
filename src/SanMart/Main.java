@@ -1,10 +1,7 @@
 package SanMart;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.swing.*;
+import java.sql.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -21,6 +18,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int selectMenu = Integer.parseInt(input.nextLine());
         while (true) {
+            String[] Nullarg = new String[]{};
             String category;
             int selectClass;
 
@@ -42,7 +40,7 @@ public class Main {
                             break;
                     }
 
-                    databaseProcess(category, new ExecuteQuery() {
+                    databaseProcess(category, Nullarg,new ExecuteQuery() {
                         @Override
                         public void processFromResultSet(ResultSet resultSet) {
                             try {
@@ -69,8 +67,8 @@ public class Main {
                         }
 
                         int itemCount = Integer.parseInt(tokenizer.nextToken());
-
-                        databaseProcess(InsertCartSimple , new ExecuteQuery() {
+                        String[] arg = new String[]{Integer.toString(itemNumber),Integer.toString(itemCount)};
+                        databaseProcess(InsertCartSimple, arg,new ExecuteQuery() {
                             @Override
                             public void processFromResultSet(ResultSet resultSet) {
 
@@ -96,7 +94,7 @@ public class Main {
                             break;
                     }
 
-                    databaseProcess(category, new ExecuteQuery() {
+                    databaseProcess(category, Nullarg, new ExecuteQuery() {
                         @Override
                         public void processFromResultSet(ResultSet resultSet) {
                             try {
@@ -119,17 +117,27 @@ public class Main {
         }
     }
 
-    public static void databaseProcess(String sqlQuery, ExecuteQuery executeQuery) {
+    public static void databaseProcess(String sqlQuery, String[] arg, ExecuteQuery executeQuery) {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:alpha.db");
-            Statement statement = connection.createStatement();
+            Statement statement;
+            if(arg.length == 0) {
+                statement= connection.createStatement();
+            } else {
+                statement  = connection.prepareStatement(sqlQuery);
+            }
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            ResultSet resultSet = getResultSetFromSqlQuery(statement, sqlQuery);
-            while (resultSet.next()) {
-                executeQuery.processFromResultSet(resultSet);
+            ResultSet resultSet = getResultSetFromSqlQuery(statement, arg, sqlQuery);
+            if(resultSet != null) {
+                while (resultSet.next()) {
+                    executeQuery.processFromResultSet(resultSet);
+                }
             }
+            else
+                executeQuery.processFromResultSet(null);
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -143,15 +151,28 @@ public class Main {
         }
     }
 
-    private static ResultSet getResultSetFromSqlQuery(Statement statement, String sqlQuery) {
+    private static ResultSet getResultSetFromSqlQuery(Statement statement, String[] arg, String sqlQuery) {
         ResultSet resultSet = null;
-
-        try {
-            resultSet = statement.executeQuery(sqlQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(arg.length == 0) {
+            try {
+                resultSet = statement.executeQuery(sqlQuery);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
+        else {
+            try {
+                int i;
+                PreparedStatement preState = (PreparedStatement)statement;
+                for(i=1;i<=arg.length;i++)
+                {
+                    preState.setString(i,arg[i-1]);
+                }
+                preState.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return resultSet;
     }
 
