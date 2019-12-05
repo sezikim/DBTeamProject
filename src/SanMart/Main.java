@@ -74,7 +74,6 @@ public class Main {
 
                             }
                         });
-                        //System.out.printf("%s, %d 개가 장바구니에 담겼습니다.\n", ITEM_NAMES[itemNumber - 1], itemCount);
                     }
                     break;
                 case NECESSITY:
@@ -112,6 +111,7 @@ public class Main {
                     printProductToCartMessage();
                     break;
                 case CART:
+
                     break;
             }
         }
