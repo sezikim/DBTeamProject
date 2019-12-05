@@ -29,18 +29,18 @@ public class Main {
                     int selectClass = Integer.parseInt(input.nextLine());
                     switch (selectClass) {
                         case FRUIT_VEGETABLE_GRAIN:
-                            category = "c1"
+                            category = "c1";
                             break;
                         case MILK_COLD_FROZEN:
-                            category = "c2"
+                            category = "c2";
                             break;
                         case PROCESSED_CONDIMENT:
-                            category = "c3"
+                            category = "c3";
                             break;
                     }
-                    printDatabaseFromQuery("", new ProductInfo() {
+                    printDatabaseFromQuery(category, new ProductInfo() {
                         @Override
-                        public void printInfo() {
+                        public void printInfo(ResultSet resultSet) {
 
                         }
                     });

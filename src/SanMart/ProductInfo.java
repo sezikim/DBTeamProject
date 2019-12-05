@@ -1,5 +1,7 @@
 package SanMart;
 
+import java.sql.ResultSet;
+
 public interface ProductInfo {
-    void printInfo();
+    void printInfo(ResultSet resultSet);
 }
