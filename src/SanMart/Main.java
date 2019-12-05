@@ -62,11 +62,12 @@ public class Main {
                         StringTokenizer tokenizer = new StringTokenizer(purchaseItem, " ");
                         int itemNumber = Integer.parseInt(tokenizer.nextToken());
                         if (itemNumber == NONE) {
-                            System.out.println("장바구니로 이동합니다.\n");
+                            System.out.println("이전 메뉴로 돌아갑니다.\n");
                             break;
                         }
 
                         int itemCount = Integer.parseInt(tokenizer.nextToken());
+                        System.out.printf("%d 상품, %d 개가 장바구니에 추가되었습니다. \n", itemNumber, itemCount);
                         String[] arg = new String[]{Integer.toString(itemNumber),Integer.toString(itemCount)};
                         databaseProcess(InsertCartSimple, arg,new ExecuteQuery() {
                             @Override
@@ -74,7 +75,6 @@ public class Main {
 
                             }
                         });
-                        //System.out.printf("%s, %d 개가 장바구니에 담겼습니다.\n", ITEM_NAMES[itemNumber - 1], itemCount);
                     }
                     break;
                 case NECESSITY:
@@ -112,6 +112,7 @@ public class Main {
                     printProductToCartMessage();
                     break;
                 case CART:
+
                     break;
             }
         }
