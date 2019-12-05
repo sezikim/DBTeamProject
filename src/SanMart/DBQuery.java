@@ -13,7 +13,10 @@ public class DBQuery {
     public final static String ViewProductBabyBeautyDisposable = ViewProduct+" WHERE Classified_name = \"유아\" OR Classified_name = \"일회용품\" OR Classified_name = \"뷰티\" ORDER BY Product.product_name";
 
 
-    public final static String ViewCartSimpole = "";
+    public final static String ViewCartSimple = "SELECT product_ID,product_name,cart_count FROM v_CartSimple";
+    public final static String InsertCartSimple = "INSERT INTO v_CartSimple(`product_ID`,`cart_count`) values (?,?)";
+    public final static String UpdateCartSimple = "UPDATE v_CartSimple set `cart_count`=? WHERE `product_ID`=?";
+    public final static String DeleteCartSimple = "DELETE FROM v_CartSimple WHERE `product_ID`=?";
 
 
 }
