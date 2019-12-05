@@ -1,6 +1,7 @@
 package SanMart;
 
 public class Constant {
+    public static final int NONE = 0;
     public static final int FOOD = 1;
     public static final int FRUIT_VEGETABLE_GRAIN = 1;
     public static final int MILK_COLD_FROZEN = 2;

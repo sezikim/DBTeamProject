@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import static SanMart.Constant.*;
 import static SanMart.DBQuery.*;
@@ -41,11 +42,12 @@ public class Main {
                             break;
                     }
 
-                    printDatabaseFromQuery(category, new ProductInfo() {
+                    databaseProcess(category, new ExecuteQuery() {
                         @Override
-                        public void printInfo(ResultSet resultSet) {
+                        public void processFromResultSet(ResultSet resultSet) {
                             try {
-                                System.out.printf("%25s %10s %.1f\n",
+                                System.out.printf("%d %25s %10s %.1f\n",
+                                        resultSet.getInt("product_id"),
                                         resultSet.getString("product_name"),
                                         resultSet.getString("madeBy"),
                                         resultSet.getDouble("costAvg"));
@@ -56,6 +58,26 @@ public class Main {
                     });
 
                     printProductToCartMessage();
+                    while (true) {
+
+                        String purchaseItem = input.nextLine();
+                        StringTokenizer tokenizer = new StringTokenizer(purchaseItem, " ");
+                        int itemNumber = Integer.parseInt(tokenizer.nextToken());
+                        if (itemNumber == NONE) {
+                            System.out.println("장바구니로 이동합니다.\n");
+                            break;
+                        }
+
+                        int itemCount = Integer.parseInt(tokenizer.nextToken());
+
+                        databaseProcess(InsertCartSimple, new ExecuteQuery() {
+                            @Override
+                            public void processFromResultSet(ResultSet resultSet) {
+
+                            }
+                        });
+                        System.out.printf("%s, %d 개가 장바구니에 담겼습니다.\n", ITEM_NAMES[itemNumber - 1], itemCount);
+                    }
                     break;
                 case NECESSITY:
                     category = null;
@@ -74,11 +96,12 @@ public class Main {
                             break;
                     }
 
-                    printDatabaseFromQuery(category, new ProductInfo() {
+                    databaseProcess(category, new ExecuteQuery() {
                         @Override
-                        public void printInfo(ResultSet resultSet) {
+                        public void processFromResultSet(ResultSet resultSet) {
                             try {
-                                System.out.printf("%s %s %f\n",
+                                System.out.printf("%d %s %s %f\n",
+                                        resultSet.getInt("product_id"),
                                         resultSet.getString("product_name"),
                                         resultSet.getString("madeBy"),
                                         resultSet.getDouble("costAvg"));
@@ -96,7 +119,7 @@ public class Main {
         }
     }
 
-    public static void printDatabaseFromQuery(String sqlQuery, ProductInfo productInfo) {
+    public static void databaseProcess(String sqlQuery, ExecuteQuery executeQuery) {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:alpha.db");
@@ -105,7 +128,7 @@ public class Main {
 
             ResultSet resultSet = getResultSetFromSqlQuery(statement, sqlQuery);
             while (resultSet.next()) {
-                productInfo.printInfo(resultSet);
+                executeQuery.processFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,8 +182,8 @@ public class Main {
     }
 
     private static void printProductToCartMessage() {
-        System.out.println("상번호, 수량을 입력해서 장바구니에 추가하세요!");
-        System.out.println("예) 1 4");
+        System.out.println("상품번호, 수량을 입력해서 장바구니에 추가하세요!");
+        System.out.println("예) 1234 4");
         System.out.println("다 골랐으면 0번을 눌러주세요.\n");
         System.out.println();
     }
