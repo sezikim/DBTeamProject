@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f58da9e-fb3a-4d03-a13e-4b622057d116" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_27_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SanMart.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alpha.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alpha.db.sqbpro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SanMart/SanMart/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlite-jdbc-3.27.2.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SanMart/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SanMart/ProductInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SanMart/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SanMart/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SanMart/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SanMart/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +22,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SanMart/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+            <state relative-caret-position="223">
+              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SanMart/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -51,8 +51,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,6 +63,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/SanMart/ProductInfo.java" />
+        <option value="$PROJECT_DIR$/src/SanMart/Constant.java" />
         <option value="$PROJECT_DIR$/src/SanMart/Main.java" />
       </list>
     </option>
@@ -174,11 +175,20 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18376069" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18376069" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -187,12 +197,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31428573" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31428573" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32959184" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
@@ -207,38 +217,22 @@
     </layout>
   </component>
   <component name="WindowStateProjectService">
-    <state x="464" y="158" key="FileChooserDialogImpl" timestamp="1575280781982">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="464" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1575280781982" />
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1575281249651">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1575281249651" />
-    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1575281249651">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1575281249651" />
-    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1575281249651">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1575281249651" />
-    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1575281249651">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1575281249651" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1575280787696">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1575280787696" />
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1575280442700">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1575280442700" />
-    <state x="0" y="0" width="746" height="834" key="find.popup" timestamp="1575280550159">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="0" y="0" width="746" height="834" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1575280550159" />
+    <state x="464" y="158" key="FileChooserDialogImpl" />
+    <state x="464" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" />
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom" />
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" />
+    <state width="1493" height="198" key="GridCell.Tab.0.center" />
+    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" />
+    <state width="1493" height="198" key="GridCell.Tab.0.left" />
+    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" />
+    <state x="249" y="0" key="SettingsEditor" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" />
+    <state x="0" y="0" width="746" height="834" key="find.popup" />
+    <state x="0" y="0" width="746" height="834" key="find.popup/0.0.1536.834@0.0.1536.834" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/SanMart/ProductInfo.java">
@@ -248,10 +242,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SanMart/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SanMart/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+        <state relative-caret-position="223">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
         </state>
       </provider>
     </entry>

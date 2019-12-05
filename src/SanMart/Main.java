@@ -7,15 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import static SanMart.Constant.*;
+
 public class Main {
-    private static final int FOOD = 1;
-    private static final int NECESSITY = 2;
-    private static final int CART = 3;
 
     public static void main(String[] args) {
-        Connection connection = null;
         System.out.println("어디서 장을 봐야할지를 알려드립니다!");
-
 
         printCategorySelectMessage();
 
@@ -27,7 +24,21 @@ public class Main {
                 case FOOD:
                     printFoodSelectMessage();
 
-                    printDatabaseFromQuery(connection, "", new ProductInfo() {
+                    String category = null;
+
+                    int selectClass = Integer.parseInt(input.nextLine());
+                    switch (selectClass) {
+                        case FRUIT_VEGETABLE_GRAIN:
+                            category = "c1"
+                            break;
+                        case MILK_COLD_FROZEN:
+                            category = "c2"
+                            break;
+                        case PROCESSED_CONDIMENT:
+                            category = "c3"
+                            break;
+                    }
+                    printDatabaseFromQuery("", new ProductInfo() {
                         @Override
                         public void printInfo() {
 
@@ -43,7 +54,8 @@ public class Main {
         }
     }
 
-    private static void printDatabaseFromQuery(Connection connection, String sqlQuery, ProductInfo productInfo) {
+    public static void printDatabaseFromQuery(String sqlQuery, ProductInfo productInfo) {
+        Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:alpha.db");
             Statement statement = connection.createStatement();
