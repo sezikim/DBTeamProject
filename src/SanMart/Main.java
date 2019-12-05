@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import static SanMart.Constant.*;
+import static SanMart.DBQuery.*;
 
 public class Main {
 
@@ -18,24 +19,25 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         int selectMenu = Integer.parseInt(input.nextLine());
-
         while (true) {
+            String category;
+            int selectClass;
+
             switch (selectMenu) {
                 case FOOD:
+                    category = null;
                     printFoodSelectMessage();
 
-                    String category = null;
-
-                    int selectClass = Integer.parseInt(input.nextLine());
+                    selectClass = Integer.parseInt(input.nextLine());
                     switch (selectClass) {
                         case FRUIT_VEGETABLE_GRAIN:
-                            category = DBQuery.;
+                            category = ViewProductFruitVegetableGrain;
                             break;
                         case MILK_COLD_FROZEN:
-                            category = "c2";
+                            category = ViewProductMilkColdFrozen;
                             break;
                         case PROCESSED_CONDIMENT:
-                            category = "c3";
+                            category = ViewProductProcessedCondiment;
                             break;
                     }
 
@@ -43,7 +45,7 @@ public class Main {
                         @Override
                         public void printInfo(ResultSet resultSet) {
                             try {
-                                System.out.printf("%s %s %lf\n",
+                                System.out.printf("%25s %10s %.1f\n",
                                         resultSet.getString("product_name"),
                                         resultSet.getString("madeBy"),
                                         resultSet.getDouble("costAvg"));
@@ -54,7 +56,35 @@ public class Main {
                     });
                     break;
                 case NECESSITY:
-                    printNecessitySelectMessage();
+                    category = null;
+                    printFoodSelectMessage();
+
+                    selectClass = Integer.parseInt(input.nextLine());
+                    switch (selectClass) {
+                        case CLEAN_LAUNDRY_KITCHEN:
+                            category = ViewProductCleanLaundryKitchen;
+                            break;
+                        case BATHROOM_TOILET:
+                            category = ViewProductBathroomToilet;
+                            break;
+                        case BABY_BEAUTY_DISPOSABLE:
+                            category = ViewProductBabyBeautyDisposable;
+                            break;
+                    }
+
+                    printDatabaseFromQuery(category, new ProductInfo() {
+                        @Override
+                        public void printInfo(ResultSet resultSet) {
+                            try {
+                                System.out.printf("%s %s %f\n",
+                                        resultSet.getString("product_name"),
+                                        resultSet.getString("madeBy"),
+                                        resultSet.getDouble("costAvg"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                     break;
                 case CART:
                     break;
