@@ -29,7 +29,7 @@ public class Main {
                     int selectClass = Integer.parseInt(input.nextLine());
                     switch (selectClass) {
                         case FRUIT_VEGETABLE_GRAIN:
-                            category = "c1";
+                            category = DBQuery.;
                             break;
                         case MILK_COLD_FROZEN:
                             category = "c2";
@@ -38,10 +38,18 @@ public class Main {
                             category = "c3";
                             break;
                     }
+
                     printDatabaseFromQuery(category, new ProductInfo() {
                         @Override
                         public void printInfo(ResultSet resultSet) {
-
+                            try {
+                                System.out.printf("%s %s %lf\n",
+                                        resultSet.getString("product_name"),
+                                        resultSet.getString("madeBy"),
+                                        resultSet.getDouble("costAvg"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                     break;
@@ -63,7 +71,7 @@ public class Main {
 
             ResultSet resultSet = getResultSetFromSqlQuery(statement, sqlQuery);
             while (resultSet.next()) {
-                productInfo.printInfo();
+                productInfo.printInfo(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
