@@ -14,12 +14,12 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("어디서 장을 봐야할지를 알려드립니다!");
 
-		printCategorySelectMessage();
-
-		Scanner input = new Scanner(System.in);
-		int selectMenu = Integer.parseInt(input.nextLine());
-		System.out.println(selectMenu);
 		while (true) {
+			printCategorySelectMessage();
+			Scanner input = new Scanner(System.in);
+			int selectMenu = Integer.parseInt(input.nextLine());
+			System.out.println(selectMenu);
+
 			String[] Nullarg = new String[] {};
 			String category;
 			int selectClass;
@@ -167,12 +167,11 @@ public class Main {
 						@Override
 						public void processFromResultSet(ResultSet resultSet) {
 							try {
-								System.out.printf("%d %s %d %s %d\n",
-									resultSet.getInt("product_id"),
+								System.out.printf("%s %d %s %d\n",
 									resultSet.getString("product_name"),
 									resultSet.getInt("cart_count"),
 									resultSet.getString("mart_name"),
-									resultSet.getInt("price_sum"));
+									resultSet.getInt("total_price"));
 							} catch (SQLException e) {
 								e.printStackTrace();
 							}
@@ -182,10 +181,10 @@ public class Main {
 			}
 
 			System.out.println();
-			System.out.println("종료하려면 0, 메인으로 돌아가려면 1을 입력하세요.");
-			String keepGoing = input.next();
+			System.out.println("종료하려면 1, 메인으로 돌아가려면 0을 입력하세요.");
+			String keepGoing = input.nextLine();
 			if (Integer.parseInt(keepGoing) == MAIN) {
-				break;
+				continue;
 			}
 			if (Integer.parseInt(keepGoing) == END) {
 				System.out.println("------------------------------------------------");
@@ -281,10 +280,13 @@ public class Main {
 		System.out.println("------------------------------------------------");
 		System.out.println("장바구니 현황입니다.");
 	}
+
 	private static void printProductToCartMessage() {
 		System.out.println("상품번호, 수량을 입력해서 장바구니에 추가하세요!");
-		System.out.println("예) 1234 4");
-		System.out.println("다 골랐으면 0번을 눌러주세요.\n");
-		System.out.println();
+		System.out.println("예) 1234 4\n");
+		System.out.println("------------------------------------------------\n");
+		System.out.println("다 골랐으면 0번을 눌러주세요.");
+		System.out.println("------------------------------------------------\n");
+
 	}
 }

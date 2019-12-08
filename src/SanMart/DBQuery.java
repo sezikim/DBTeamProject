@@ -18,8 +18,8 @@ public class DBQuery {
     public final static String UpdateCartSimple = "UPDATE v_CartSimple set `cart_count`=? WHERE `product_ID`=?";
     public final static String DeleteCartSimple = "DELETE FROM v_CartSimple WHERE `product_ID`=?";
 
-    public final static String ViewCartDetail = "SELECT product_name, cart_count, mart_name, (mart_price * cart_count) as price_sum"
-                                                        + " FROM v_CartPriceByMart"
-                                                        + " LEFT JOIN Product On Product.product_id = Cart.product_id";
+    public final static String ViewCartDetail = "SELECT product_name, cart_count, mart_name, total_price"
+                                                        + " FROM v_CartProductPriceByMart";
+
 
 }
