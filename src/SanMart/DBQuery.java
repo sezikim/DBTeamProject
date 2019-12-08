@@ -2,7 +2,12 @@ package SanMart;
 
 public class DBQuery {
     public final static String ConnectionUrl = "jdbc:sqlite:alpha.db";
-    public final static String ViewProduct = "SELECT Product.product_ID,Product.product_name,Product.madeBy,Product.costAvg FROM ClassifedProduct LEFT JOIN Product ON ClassifedProduct.product_ID = Product.product_ID LEFT JOIN Category ON ClassifedProduct.category_ID = Category.category_ID";
+
+    public final static String ViewProduct = "SELECT Product.product_ID,Product.product_name,Product.madeBy,Product.costAvg "
+                                            + "FROM ClassifedProduct LEFT JOIN Product "
+                                                                        + "ON ClassifedProduct.product_ID = Product.product_ID "
+                                                                    + "LEFT JOIN Category "
+                                                                        + "ON ClassifedProduct.category_ID = Category.category_ID";
 
     public final static String ViewProductFruitVegetableGrain = ViewProduct+" WHERE Classified_name = \"채소\" OR Classified_name = \"과일\" OR Classified_name = \"곡류\" ORDER BY Product.product_name";
     public final static String ViewProductMilkColdFrozen = ViewProduct+" WHERE Classified_name = \"유제품\" OR Classified_name = \"냉장\" OR Classified_name = \"냉동\" ORDER BY Product.product_name";
@@ -20,6 +25,7 @@ public class DBQuery {
 
     public final static String ViewCartDetail = "SELECT product_name, cart_count, mart_name, total_price"
                                                         + " FROM v_CartProductPriceByMart";
+    public final static String WhereToGo = "SELECT mart_name, sum(total_price) as final_price from v_CartProductPriceByMart Group by mart_name";
 
 
 }

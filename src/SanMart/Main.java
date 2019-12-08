@@ -12,7 +12,9 @@ import static SanMart.DBQuery.*;
 public class Main {
 
 	public static void main(String[] args) {
+		System.out.println("\n------------------------------------------------");
 		System.out.println("어디서 장을 봐야할지를 알려드립니다!");
+		System.out.println("------------------------------------------------\n");
 
 		while (true) {
 			printCategorySelectMessage();
@@ -21,28 +23,28 @@ public class Main {
 			System.out.println(selectMenu);
 
 			String[] Nullarg = new String[] {};
-			String category;
+			String query;
 			int selectClass;
 
 			switch (selectMenu) {
 				case FOOD:
-					category = null;
+					query = null;
 					printFoodSelectMessage();
 
 					selectClass = Integer.parseInt(input.nextLine());
 					switch (selectClass) {
 						case FRUIT_VEGETABLE_GRAIN:
-							category = ViewProductFruitVegetableGrain;
+							query = ViewProductFruitVegetableGrain;
 							break;
 						case MILK_COLD_FROZEN:
-							category = ViewProductMilkColdFrozen;
+							query = ViewProductMilkColdFrozen;
 							break;
 						case PROCESSED_CONDIMENT:
-							category = ViewProductProcessedCondiment;
+							query = ViewProductProcessedCondiment;
 							break;
 					}
-
-					databaseProcess(category, Nullarg, new ExecuteQuery() {
+                    System.out.println("\n------------------------------------------------\n");
+					databaseProcess(query, Nullarg, new ExecuteQuery() {
 						@Override
 						public void processFromResultSet(ResultSet resultSet) {
 							try {
@@ -69,7 +71,9 @@ public class Main {
 						}
 
 						int itemCount = Integer.parseInt(tokenizer.nextToken());
-						System.out.printf("%d 상품, %d 개가 장바구니에 추가되었습니다. \n", itemNumber, itemCount);
+                        System.out.println("\n------------------------------------------------");
+						System.out.printf("%d 상품, %d 개가 장바구니에 추가되었습니다.", itemNumber, itemCount);
+                        System.out.println("\n------------------------------------------------\n");
 						String[] arg = new String[] {Integer.toString(itemNumber), Integer.toString(itemCount)};
 						databaseProcess(InsertCartSimple, arg, new ExecuteQuery() {
 							@Override
@@ -87,28 +91,29 @@ public class Main {
 										}
 									}
 								});
+                                System.out.println("\n------------------------------------------------\n");
 							}
 						});
 					}
 					break;
 				case NECESSITY:
-					category = null;
+					query = null;
 					printNecessitySelectMessage();
 
 					selectClass = Integer.parseInt(input.nextLine());
 					switch (selectClass) {
 						case CLEAN_LAUNDRY_KITCHEN:
-							category = ViewProductCleanLaundryKitchen;
+							query = ViewProductCleanLaundryKitchen;
 							break;
 						case BATHROOM_TOILET:
-							category = ViewProductBathroomToilet;
+							query = ViewProductBathroomToilet;
 							break;
 						case BABY_BEAUTY_DISPOSABLE:
-							category = ViewProductBabyBeautyDisposable;
+							query = ViewProductBabyBeautyDisposable;
 							break;
 					}
-
-					databaseProcess(category, Nullarg, new ExecuteQuery() {
+                    System.out.println("\n------------------------------------------------\n");
+					databaseProcess(query, Nullarg, new ExecuteQuery() {
 						@Override
 						public void processFromResultSet(ResultSet resultSet) {
 							try {
@@ -135,7 +140,9 @@ public class Main {
 						}
 
 						int itemCount = Integer.parseInt(tokenizer.nextToken());
-						System.out.printf("%d 상품, %d 개가 장바구니에 추가되었습니다. \n", itemNumber, itemCount);
+                        System.out.println("\n------------------------------------------------");
+						System.out.printf("%d 상품, %d 개가 장바구니에 추가되었습니다.", itemNumber, itemCount);
+                        System.out.println("\n------------------------------------------------\n");
 						String[] arg = new String[] {Integer.toString(itemNumber), Integer.toString(itemCount)};
 						databaseProcess(InsertCartSimple, arg, new ExecuteQuery() {
 							@Override
@@ -155,15 +162,14 @@ public class Main {
 								});
 							}
 						});
+                        System.out.println("\n------------------------------------------------\n");
 					}
 					break;
 				case CART:
 
-
-
-					category = ViewCartDetail;
+					query = ViewCartDetail;
 					printCartViewMessage();
-					databaseProcess(category, Nullarg, new ExecuteQuery() {
+					databaseProcess(query, Nullarg, new ExecuteQuery() {
 						@Override
 						public void processFromResultSet(ResultSet resultSet) {
 							try {
@@ -177,19 +183,34 @@ public class Main {
 							}
 						}
 					});
-					break;
-			}
 
-			System.out.println();
-			System.out.println("종료하려면 1, 메인으로 돌아가려면 0을 입력하세요.");
-			String keepGoing = input.nextLine();
-			if (Integer.parseInt(keepGoing) == MAIN) {
-				continue;
-			}
-			if (Integer.parseInt(keepGoing) == END) {
-				System.out.println("------------------------------------------------");
-				System.out.println("종료합니다!");
-				return;
+					query = WhereToGo;
+                    System.out.println("------------------------------------------------\n");
+					databaseProcess(query, Nullarg, new ExecuteQuery() {
+                        @Override
+                        public void processFromResultSet(ResultSet resultSet) {
+                            try {
+                                System.out.printf("%10s %5d\n",
+                                    resultSet.getString("mart_name"),
+                                    resultSet.getInt("final_price"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    System.out.println("\n------------------------------------------------\n");
+                    System.out.println();
+                    System.out.println("종료하려면 0, 메인으로 돌아가려면 1을 입력하세요.");
+                    String keepGoing = input.nextLine();
+                    if (Integer.parseInt(keepGoing) == MAIN) {
+                        continue;
+                    }
+                    if (Integer.parseInt(keepGoing) == END) {
+                        System.out.println("------------------------------------------------");
+                        System.out.println("종료합니다!");
+                        return;
+                    }
+					break;
 			}
 		}
 	}
@@ -259,7 +280,9 @@ public class Main {
 	}
 
 	private static void printFoodSelectMessage() {
-		System.out.println("\n식료품 코너\n");
+		System.out.println("\n------------------------------------------------");
+		System.out.println("식료품 코너");
+		System.out.println("------------------------------------------------\n");
 		System.out.println("카테고를 고르시오.\n");
 		System.out.println("\t1. 과일, 채소, 곡류\n");
 		System.out.println("\t2. 유제품, 냉장, 냉동\n");
@@ -268,7 +291,9 @@ public class Main {
 	}
 
 	private static void printNecessitySelectMessage() {
-		System.out.println("\n생활용품 코너\n");
+		System.out.println("\n------------------------------------------------");
+		System.out.println("생활용품 코너");
+		System.out.println("------------------------------------------------\n");
 		System.out.println("카테고를 고르시오.\n");
 		System.out.println("\t1. 청소, 세탁, 주방 \n");
 		System.out.println("\t2. 욕실, 화장실\n");
@@ -277,16 +302,17 @@ public class Main {
 	}
 
 	private static void printCartViewMessage() {
+        System.out.println("\n장바구니 현황입니다.");
 		System.out.println("------------------------------------------------");
-		System.out.println("장바구니 현황입니다.");
+
 	}
 
 	private static void printProductToCartMessage() {
+        System.out.println("\n------------------------------------------------\n");
 		System.out.println("상품번호, 수량을 입력해서 장바구니에 추가하세요!");
 		System.out.println("예) 1234 4\n");
 		System.out.println("------------------------------------------------\n");
 		System.out.println("다 골랐으면 0번을 눌러주세요.");
-		System.out.println("------------------------------------------------\n");
-
+		System.out.println("\n------------------------------------------------\n");
 	}
 }
